@@ -1,0 +1,4 @@
+@keyframes fade-rise { from { opacity: 0; transform: translateY(20px); } }
+.animate-fade-rise { animation: fade-rise .8s ease-out both; }
+.animate-fade-rise-delay { animation: fade-rise .8s ease-out .2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise .8s ease-out .4s both; }

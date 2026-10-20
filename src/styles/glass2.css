@@ -1,0 +1,84 @@
+/* ===== v2: vidro escuro premium, tipografia bruta, fundo vivo ===== */
+:root{--sheen:linear-gradient(158deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.025) 46%,rgba(0,0,0,.16) 46.2%,rgba(0,0,0,.32) 100%)}
+main{position:relative;z-index:1}
+/* aurora fixa que acende quando a página escurece */
+body::before{content:'';position:fixed;inset:-10%;z-index:0;pointer-events:none;opacity:var(--k);background:radial-gradient(50vmax 40vmax at 10% 6%,rgba(17,106,52,.36),transparent 60%),radial-gradient(44vmax 36vmax at 94% 44%,rgba(124,181,66,.14),transparent 62%),radial-gradient(62vmax 40vmax at 28% 100%,rgba(17,106,52,.3),transparent 65%);animation:aur 26s ease-in-out infinite alternate}
+@keyframes aur{to{transform:translate3d(-3%,2%,0) scale(1.07)}}
+/* grão fino por cima de tudo: dá textura de material */
+body::after{content:'';position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.08;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* vidro: borda de luz no topo e na base, brilho diagonal, sombra profunda */
+.glass{background:var(--sheen),var(--glass);border-radius:30px;border-color:rgba(255,255,255,.06);backdrop-filter:blur(22px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(124,181,66,.2),0 0 0 1px rgba(0,0,0,.45),0 50px 110px -40px rgba(0,0,0,.92)}
+.glass::before{background:radial-gradient(34% 90px at 50% 0%,#fff,transparent 72%),radial-gradient(34% 90px at 50% 100%,rgba(124,181,66,.95),transparent 72%),linear-gradient(135deg,rgba(124,181,66,.5),transparent 35%,transparent 65%,rgba(124,181,66,.28))}
+.stk .glass{background:var(--sheen),linear-gradient(180deg,rgba(18,40,29,.97),rgba(8,20,14,.97))}
+.pcard.hi{background:var(--sheen),linear-gradient(180deg,rgba(124,181,66,.2),rgba(255,255,255,.03))}
+/* botões */
+.btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -12px 22px -14px rgba(124,181,66,.45)}
+.btn.w{box-shadow:inset 0 -10px 20px -12px rgba(16,40,29,.3),0 12px 44px -16px rgba(255,255,255,.4)}
+.btn:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -12px 22px -14px rgba(124,181,66,.6),0 18px 54px -14px rgba(124,181,66,.7)}
+.btn.w:hover{box-shadow:inset 0 -10px 20px -12px rgba(16,40,29,.3),0 18px 60px -12px rgba(124,181,66,.75)}
+/* títulos brutos: grandes, apertados, com degradê metálico */
+.h2{font-size:clamp(2.9rem,7.4vw,6.8rem);line-height:.92;letter-spacing:-.042em;background:linear-gradient(180deg,#fff 28%,rgba(234,245,238,.5));-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.06em}
+.h2 em{color:var(--sprout)}
+.h2 .sw{background:none}
+.sec{padding:clamp(100px,14vw,190px) 0}
+.chip{backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.pc5{min-height:340px}
+.num{background:linear-gradient(180deg,#fff,rgba(124,181,66,.35));-webkit-background-clip:text;background-clip:text;color:transparent}
+/* pontos de luz nos cantos dos cartões numerados */
+.pc5::after,.pcard::after{content:'';position:absolute;right:26px;top:26px;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 14px 2px rgba(124,181,66,.9);opacity:.7}
+/* galeria horizontal */
+.hg{position:relative;height:var(--hh,320vh)}
+.hgs{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3vh,36px);padding-top:84px}
+.hgs .h2{font-size:clamp(2.2rem,4.6vw,4.2rem);max-width:26ch}
+.hgt{display:flex;gap:22px;width:max-content;padding-inline:max(24px,calc((100vw - 1180px)/2));transform:translate3d(var(--tx,0px),0,0);will-change:transform}
+.hgc{flex:none;width:min(420px,78vw);height:min(460px,50svh);padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.hgc .art{flex:1;min-height:0;display:grid;place-items:center}.hgc .art svg{height:84%;width:auto;max-width:70%;filter:drop-shadow(0 30px 36px rgba(0,0,0,.6))}.hgc .art img{width:auto;height:92%;max-width:100%;filter:drop-shadow(0 30px 36px rgba(0,0,0,.6))}
+.hgc .art img{animation:flt 6s ease-in-out infinite;rotate:-35deg}
+.hgc h3{font-size:2.3rem;line-height:1}.hgc p{color:var(--mut);margin-top:8px;font-size:.94rem}.hgc .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hgp{position:relative;height:2px;width:min(1180px,100% - 48px);margin-inline:auto;background:rgba(255,255,255,.12)}.hgp i{position:absolute;inset:0;background:var(--sprout);transform-origin:left;transform:scaleX(var(--hp,0))}
+html.st .hg{height:auto}html.st .hgs{position:static;height:auto;overflow:visible;padding:40px 0}html.st .hgt{transform:none;width:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px}html.st .hgc{scroll-snap-align:center}html.st .hgp{display:none}
+/* máscara que revela */
+.mk{position:relative;height:280vh}
+.mks{position:sticky;top:0;height:100svh;overflow:hidden}
+.mkl{position:absolute;inset:0}.mkl svg{width:100%;height:100%;display:block}
+.mkc{clip-path:circle(calc(var(--m,0)*85%) at 50% 56%)}
+.mkt{position:absolute;inset:0;display:grid;place-items:center;padding:24px;pointer-events:none}
+.mkt .glass{display:grid;gap:16px;justify-items:center;text-align:center;padding:clamp(26px,4vw,48px);max-width:min(780px,100%);background:rgba(4,12,8,.55);opacity:calc(1 - var(--m,0)*1.4)}
+.mkt .h2{font-size:clamp(2.4rem,6vw,5rem)}
+.mkb{position:absolute;bottom:8%}.mkb.l{left:6%}.mkb.r{right:6%;opacity:var(--m)}
+html.st .mk{height:auto}html.st .mks{position:relative;height:70svh}html.st .mkc{clip-path:inset(0 0 0 50%)}html.st .mkt .glass{opacity:1}html.st .mkb.r{opacity:1}
+/* cúpula com órbitas (chamada para a jornada) */
+.dome{position:relative;overflow:hidden;min-height:min(92svh,820px);display:grid;place-items:center;text-align:center;padding:130px 24px;border-block:1px solid rgba(255,255,255,.07);background:radial-gradient(ellipse 70% 55% at 50% 105%,rgba(17,106,52,.45),transparent 70%),linear-gradient(#030a06,#061410)}
+.orbit{position:absolute;left:50%;top:12%;width:max(150vw,1500px);aspect-ratio:1;translate:-50% 0;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.08),transparent 38%);animation:spin 100s linear infinite;pointer-events:none}
+.orbit.b{top:36%;width:max(112vw,1120px);animation-duration:70s;animation-direction:reverse;border-color:rgba(124,181,66,.2)}
+.orbit i{position:absolute;inset:0;rotate:var(--a)}.orbit i::after{content:'';position:absolute;left:50%;top:-3px;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 14px 3px rgba(124,181,66,.9)}
+.dmc{position:relative;z-index:2;display:grid;gap:22px;justify-items:center}
+.dome .h2{max-width:14ch}
+/* chamada final com shader e marca gigante */
+.shd{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wm{font:400 clamp(4.4rem,20vw,19rem)/.78 'Instrument Serif',Georgia,serif;letter-spacing:-.05em;text-align:center;margin-top:72px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(124,181,66,.04) 82%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none;padding-bottom:.1em}
+/* gráfico de barras */
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,4vw,48px);padding:clamp(24px,4vw,44px);margin-top:20px;align-items:end}
+.bar{display:grid;gap:18px;align-content:end}.bar .col{height:260px;display:flex;align-items:flex-end}
+.bar .col i{display:block;width:100%;height:calc(var(--v)*100%);border-radius:22px 22px 8px 8px;transform-origin:bottom;transform:scaleY(0);transition:transform 1.4s var(--ease) calc(var(--j)*160ms + .2s);background:linear-gradient(180deg,rgba(124,181,66,.95),rgba(17,106,52,.45));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 0 60px -12px rgba(124,181,66,.55)}
+.in.bars .col i{transform:scaleY(1)}
+.bar .sub{color:var(--mut);font-size:.9rem}
+/* jornada: linha do tempo, anel e shader que acende com a cura */
+.jsh{position:absolute;inset:0;opacity:calc(var(--p)*.55);mix-blend-mode:screen;pointer-events:none}
+.jtl{position:absolute;left:50%;bottom:26px;translate:-50% 0;display:flex;gap:clamp(14px,3.4vw,48px);padding:12px 24px;border-radius:999px;background:rgba(6,18,12,.62);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);list-style:none;padding-inline:24px;margin:0;font-size:.82rem;color:var(--mut);z-index:3}
+.jtl li{--on:clamp(0,(var(--p) - var(--a) + .02)*30,1);display:flex;align-items:center;gap:9px;opacity:calc(.42 + var(--on)*.58);color:color-mix(in srgb,var(--mut),#fff calc(var(--on)*100%))}
+.jtl i{width:10px;height:10px;border-radius:50%;background:color-mix(in srgb,rgba(255,255,255,.22),var(--sprout) calc(var(--on)*100%));box-shadow:0 0 calc(var(--on)*16px) var(--sprout)}
+.jring{position:absolute;right:22px;bottom:22px;width:64px;height:64px;z-index:3}.jring circle{fill:none;stroke-width:3}.jring .t{stroke:rgba(255,255,255,.14)}.jring .v{stroke:var(--sprout);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--p));transform:rotate(-90deg);transform-origin:50% 50%}
+@media(max-width:900px){.jtl span{display:none}.jring{display:none}.bars{grid-template-columns:1fr 1fr}.bar .col{height:180px}}
+html.st .jtl,html.st .jring,html.st .jsh{display:none}
+html.st body::before{animation:none}
+@media(prefers-reduced-motion:reduce){body::before,.orbit{animation:none!important}}
+/* correção: .glass (position:relative) vencia .jcap (position:absolute) e tirava as legendas do lugar */
+.glass.jcap{position:absolute}
+.jcap{backdrop-filter:blur(22px) saturate(1.4)}
+.jfin{bottom:auto}
+.jcap{background:var(--sheen),rgba(4,12,8,.6)}
+/* 404: o número gigante aparece mais e o vidro cobre só a base */
+.nf .glass{margin-top:-3vw}
+/* celular: o menu cabia mal, então só a folha da marca fica */
+@media(max-width:520px){.nv .lg span{display:none}.nv{padding-left:12px}.mn a{padding:6px 9px}}

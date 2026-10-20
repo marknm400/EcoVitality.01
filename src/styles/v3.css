@@ -1,0 +1,108 @@
+/* ===== v3: cards que expandem, modalidades com desconto, final de página com logo ===== */
+html.lock{overflow:hidden;padding-right:var(--sbw,0px)}
+/* card do processo */
+.pc5[role=button]{cursor:pointer}
+.pcf{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.hint{font-size:.78rem;line-height:1;color:var(--mut);border:1px solid rgba(255,255,255,.12);padding:8px 14px;border-radius:999px;background:var(--glass);white-space:nowrap;transition:color .3s,border-color .3s}
+.pc5:hover .hint,.pc5:focus-visible .hint,.pc5[data-dw] .hint{color:#fff;border-color:var(--sprout)}
+.pc5>.dring{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}
+.dring rect{x:1px;y:1px;width:calc(100% - 2px);height:calc(100% - 2px);rx:29px;ry:29px;fill:none;stroke:var(--sprout);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 6px rgba(124,181,66,.9))}
+.pc5[data-dw] .dring rect{opacity:1;animation:dwl 2s linear forwards}
+@keyframes dwl{to{stroke-dashoffset:0}}
+.glass.pc5[data-lifted]{opacity:0;transition:none}
+/* painel expandido (janela que nasce do card) */
+.xo{position:fixed;inset:0;z-index:120;background:rgba(2,8,5,.68);backdrop-filter:blur(10px);animation:xo .45s ease both}
+.xo.out{animation:xo .4s ease reverse both}
+@keyframes xo{from{opacity:0}}
+.glass.xp{position:fixed;overflow:hidden;display:block;background:var(--sheen),rgba(5,14,9,.95);backdrop-filter:none}
+.xp.rdy{overflow-y:auto;overscroll-behavior:contain}
+.xc{padding:clamp(24px,4vw,48px);display:grid;gap:clamp(18px,2.4vw,28px);opacity:0;transition:opacity .35s}
+.xc.on{opacity:1}
+.xh{display:flex;justify-content:space-between;align-items:center}
+.xx{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:var(--glass);color:#fff;display:grid;place-items:center;cursor:pointer;transition:rotate .4s var(--ease),border-color .3s}
+.xx:hover{rotate:90deg;border-color:var(--sprout)}.xx svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.xt{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,36px);align-items:center}
+.xn{font-size:clamp(3.6rem,8vw,6.6rem)}
+.xt h3{font-size:clamp(1.9rem,4vw,3.3rem);line-height:1;letter-spacing:-.025em}
+@media(max-width:560px){.xt{grid-template-columns:1fr}}
+.xb{color:#d3e3d9;font-size:clamp(1rem,1.5vw,1.12rem);line-height:1.75;max-width:62ch}
+.xw{display:inline-block;opacity:0;filter:blur(6px);translate:0 10px}
+.on .xw{animation:xw .7s var(--ease) both;animation-delay:calc(var(--k)*22ms + .1s)}
+@keyframes xw{to{opacity:1;filter:none;translate:0 0}}
+.xcx{position:relative;padding:22px 24px 24px 32px;border-radius:20px;background:linear-gradient(180deg,rgba(124,181,66,.15),rgba(124,181,66,.04));border:1px solid rgba(124,181,66,.32);clip-path:inset(0 100% 0 0);overflow:hidden}
+.on .xcx{animation:xcur .9s var(--ease) both;animation-delay:calc(min(var(--nw),36)*22ms + .2s)}
+@keyframes xcur{to{clip-path:inset(0 0 0 0)}}
+.xcx::before{content:'';position:absolute;left:0;top:20px;bottom:20px;width:3px;border-radius:3px;background:var(--sprout);box-shadow:0 0 14px var(--sprout);transform-origin:top;transform:scaleY(0)}
+.on .xcx::before{animation:xln .8s var(--ease) both;animation-delay:calc(min(var(--nw),36)*22ms + .6s)}
+@keyframes xln{to{transform:scaleY(1)}}
+.xcx::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(124,181,66,.3) 50%,transparent 60%);transform:translateX(-120%);pointer-events:none}
+.on .xcx::after{animation:xsh 1.6s ease both;animation-delay:calc(min(var(--nw),36)*22ms + 1s)}
+@keyframes xsh{to{transform:translateX(120%)}}
+.xlab{display:flex;align-items:center;gap:10px;color:var(--sprout);font:400 1.3rem 'Instrument Serif',Georgia,serif}.xlab svg{width:22px;height:22px}
+.xcx p{margin-top:10px;color:#fff;max-width:60ch;line-height:1.6}
+.xk{color:var(--mut);font-size:.8rem}
+/* seção "Do descarte à inovação ambiental." */
+.tag{display:inline-flex;padding:7px 14px;border-radius:12px;font-size:.84rem;line-height:1.3;color:var(--ink);background:rgba(124,181,66,.08);border:1px solid rgba(124,181,66,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.stk p.sb{font:italic 400 clamp(1.15rem,1.9vw,1.45rem)/1.2 'Instrument Serif',Georgia,serif;color:var(--sprout);margin-top:10px;max-width:none}
+.stk p.sb+p{margin-top:14px}
+/* produto: modalidades */
+.prices.p4{grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1100px){.prices.p4{grid-template-columns:1fr 1fr}}@media(max-width:600px){.prices.p4{grid-template-columns:1fr}}
+.p4 .pcard{padding:28px 24px;gap:20px}
+.p4 .price{font-size:clamp(1.9rem,2.6vw,2.4rem);white-space:nowrap}
+@media(max-width:1100px){.p4 .price{font-size:clamp(2.2rem,5vw,3rem)}}
+.ph{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.ph h3{font-size:2.2rem}
+.off{display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:999px;font-size:.84rem;font-weight:600;color:#06120C;background:var(--sprout);box-shadow:0 0 24px -4px rgba(124,181,66,.7);white-space:nowrap}
+.off.base{background:rgba(255,255,255,.1);color:var(--mut);box-shadow:none;font-weight:400}
+.pcard>.ribbon{position:absolute;top:-13px;left:50%;translate:-50% 0;z-index:3;padding:5px 16px;border-radius:999px;background:#fff;color:#06120C;font-size:.78rem;font-weight:600;box-shadow:0 10px 30px -8px rgba(124,181,66,.8);white-space:nowrap}
+.meter{display:grid;gap:8px}.meter .sub{font-size:.82rem}
+.dbar{height:6px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden;min-width:90px}
+.dbar i{display:block;height:100%;width:100%;border-radius:inherit;background:linear-gradient(90deg,var(--leaf),var(--sprout));transform-origin:left;transform:scaleX(0);transition:transform 1.3s var(--ease) calc(var(--j,0)*140ms + .5s)}
+.in .dbar i{transform:scaleX(var(--d))}
+.custom{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:clamp(24px,3vw,36px) clamp(24px,4vw,44px);margin-top:20px}
+.custom h3{font-size:1.9rem}.custom .sub{max-width:56ch;margin-top:6px}
+.tbl table{min-width:780px}.tbl th{font-size:1.25rem}.tbl th.r,.tbl td.r{text-align:right}
+.tbl td:first-child{color:var(--ink)}.tbl tbody tr{transition:background .3s}.tbl tbody tr:hover{background:rgba(124,181,66,.07)}
+.dc{display:flex;align-items:center;gap:14px}.dc .dbar{width:140px;flex:none}
+/* gráfico de desconto por quantidade */
+.bars.sv4{grid-template-columns:repeat(4,1fr);gap:clamp(10px,3vw,40px);padding:clamp(44px,5vw,64px) clamp(14px,4vw,44px) clamp(24px,4vw,40px)}
+.sv4 .col{position:relative;display:block;height:clamp(200px,28vw,300px)}
+.sv4 .gh{position:absolute;inset:0;border-radius:22px 22px 8px 8px;border:1px dashed rgba(255,255,255,.22);background:repeating-linear-gradient(135deg,rgba(255,255,255,.045) 0 8px,transparent 8px 16px)}
+.sv4 .col i{position:absolute;left:0;bottom:0}
+.sv4 .off{position:absolute;left:50%;top:calc((1 - var(--v))*50%);translate:-50% -50%;z-index:2;opacity:0;transition:opacity .6s calc(var(--j)*160ms + 1.1s)}
+.sv4 .off.base{top:14px;translate:-50% 0}
+.in.sv4 .off{opacity:1}
+.sv4 .bl{text-align:center}.sv4 .bl .price{font-size:clamp(1.1rem,2.7vw,2.2rem);white-space:nowrap}.sv4 .bl .sub{font-size:clamp(.7rem,1.3vw,.9rem)}
+@media(max-width:900px){.bars.sv4{grid-template-columns:repeat(4,1fr)}}
+.sav{display:grid;gap:6px;justify-items:center;text-align:center;padding:clamp(28px,4vw,48px);margin-top:20px}
+.price.big{font-size:clamp(3.2rem,8vw,6.4rem)}
+/* final de página: logo e slogan */
+.fin{position:relative;isolation:isolate;min-height:92svh;display:grid;place-items:center;overflow:hidden;margin-top:clamp(40px,6vw,90px)}
+.fin-bg{position:absolute;inset:0;z-index:-1;opacity:.5;-webkit-mask-image:radial-gradient(ellipse 62% 56% at 50% 50%,#000 15%,transparent 76%);mask-image:radial-gradient(ellipse 62% 56% at 50% 50%,#000 15%,transparent 76%)}
+.fin-in{display:grid;justify-items:center;gap:clamp(26px,4vw,48px);padding:130px 24px 70px;text-align:center}
+.fin-logo{width:min(780px,86vw);height:auto;overflow:visible}
+.fin .fx{opacity:0}
+.fglow{opacity:0;filter:blur(38px);transform-box:fill-box;transform-origin:center}
+.fin.go .fglow{animation:fgl 2.6s ease-out both}
+@keyframes fgl{0%{opacity:0;transform:scale(.3)}40%{opacity:.55}to{opacity:.2;transform:scale(1)}}
+.fl{transform-box:fill-box;transform-origin:center}
+.fin.go .fl.d{animation:fld 1.1s var(--ease) both}.fin.go .fl.l{animation:fll 1.1s var(--ease) .12s both}
+@keyframes fld{from{opacity:0;transform:translate(-80px,60px) rotate(-34deg) scale(.8)}to{opacity:1;transform:none}}
+@keyframes fll{from{opacity:0;transform:translate(80px,-60px) rotate(34deg) scale(.8)}to{opacity:1;transform:none}}
+.fz{transform-box:fill-box;transform-origin:50% 100%}
+.fin.go .fz{animation:fz .9s var(--ease) both;animation-delay:calc(.75s + var(--k)*75ms)}
+@keyframes fz{from{opacity:0;transform:translateY(46px) scaleY(.7);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.fsweep{opacity:.75;transform:translateX(-320px)}
+.fin.go .fsweep{animation:fsw 1.5s cubic-bezier(.5,0,.2,1) 2.1s both}
+@keyframes fsw{from{transform:translateX(-320px)}to{transform:translateX(1100px)}}
+.fin-s{display:grid;gap:4px;font:400 clamp(2rem,5vw,4rem)/1.02 'Instrument Serif',Georgia,serif;letter-spacing:-.03em;color:#fff}
+.fin-s .ln.em{color:var(--sprout);font-style:italic}
+.fw{display:inline-block;filter:blur(6px);translate:0 14px}
+.fin.go .fw{animation:xw .8s var(--ease) both;animation-delay:calc(2.3s + var(--w)*130ms)}
+.fin-b{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.fin.go .fin-b{animation:fbt .8s var(--ease) 3.9s both}
+@keyframes fbt{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.fin .fx{opacity:1!important;filter:none!important;translate:none!important}.fglow{opacity:.2}}
+/* o número do painel não usa recorte de texto (falha dentro de área com rolagem) */
+.xn{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--sprout)}
+.sv4 .off.base{background:rgba(5,14,9,.75);color:#fff}

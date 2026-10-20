@@ -1,0 +1,154 @@
+/* ===== v4: hero limpo, vitrine 3D, novo card de chamada, final com a nova logo, celular e tablet ===== */
+
+/* ---------- hero: claro e limpo, no molde da referência ---------- */
+.hero2{min-height:100svh;padding:calc(8rem - 75px + 56px) 24px 120px;background:var(--page);justify-content:flex-start}
+/* O vídeo ocupa a parte de baixo, como na referência (a partir de 300 px), sem moldura.
+   "multiply" derrete o branco do vídeo no fundo da página, então não existe borda nem máscara branca.
+   Se o seu vídeo tiver fundo escuro, troque para: --vblend: normal */
+.hero2{--vblend:multiply}
+.vid{top:min(300px,30svh);mix-blend-mode:var(--vblend);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 86%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 86%,transparent)}
+.vid video{display:block}
+.hl{font-size:clamp(3rem,8.4vw,6.4rem);line-height:.95;letter-spacing:-.026em;font-weight:400;max-width:min(1100px,100%);text-wrap:balance;color:#06120C}
+.hero2 .hl em{font-style:italic;color:var(--leaf)}
+.hl .ln{display:block}
+@media(min-width:721px){.hl .ln{white-space:nowrap}}
+.btn.lg{font:600 1.02rem/1 Inter,system-ui,sans-serif;letter-spacing:0} /* ".lg" também é a classe da logo e puxava a fonte serifada para os botões grandes */
+.hero2 .hbtns{margin-top:clamp(28px,4vw,48px)}
+/* fundo claro: sem grão e sem a linha de raiz, para o hero ficar nítido */
+body::after{opacity:calc(.08*var(--k))}
+.rail{opacity:var(--k)}
+.ctx{padding-bottom:clamp(40px,6vw,80px)}
+
+/* ---------- marca no menu e no rodapé ---------- */
+.lg .lg-m{width:30px;height:30px;flex:none}
+.lg .lg-w{width:auto;height:17px;margin-left:2px;flex:none}
+.fcols .lg .lg-m{width:40px;height:40px}.fcols .lg .lg-w{height:22px}
+@media(max-width:520px){.nv .lg .lg-w{display:none}}
+
+/* ---------- vitrine 3D ---------- */
+.vt .lead{max-width:56ch}
+.vt-wrap{position:relative;margin-top:clamp(32px,5vw,60px)}
+.vt-stage{position:relative;height:clamp(480px,70svh,720px);overflow:hidden;border-radius:34px;
+  background:radial-gradient(56% 64% at 50% 44%,rgba(124,181,66,.2),transparent 70%),radial-gradient(90% 40% at 50% 112%,rgba(17,106,52,.5),transparent 70%),rgba(3,10,6,.82)}
+.vt-stage{touch-action:pan-y}
+.vt-stage>*{position:absolute}
+.vt-floor{left:50%;bottom:5.5%;width:min(560px,74%);aspect-ratio:3.4;translate:-50% 0;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,0,0,.62),transparent 66%);pointer-events:none;z-index:0}
+.vt-floor::before,.vt-floor::after{content:'';position:absolute;inset:8% 6%;border-radius:50%;border:1px solid rgba(124,181,66,.26);box-shadow:0 0 30px -8px rgba(124,181,66,.35)}
+.vt-floor::after{inset:-14% -10%;border-color:rgba(255,255,255,.08);box-shadow:none}
+.vt-stage>.vt-cv{inset:0;width:100%;height:100%;z-index:1;cursor:grab;touch-action:pan-y;outline-offset:-6px;border-radius:inherit;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.vt-cv.grab{cursor:grabbing}
+.vt-stage>.vt-fb{left:50%;top:50%;height:74%;width:auto;translate:-50% -50%;rotate:-45deg;z-index:1;animation:flt 6s ease-in-out infinite;filter:drop-shadow(0 40px 40px rgba(0,0,0,.5))}
+.vt-stage>.vt-lead{inset:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:visible}
+.vt-lead g{transition:opacity .3s}
+.vt-lead line{stroke:var(--sprout);stroke-width:1.5;stroke-dasharray:4 4;opacity:.9}
+.vt-lead circle{fill:var(--sprout)}
+.vt-stage>.vt-hs{inset:0;z-index:3;pointer-events:none}
+.hs{position:absolute;left:0;top:0;width:48px;height:48px;margin:-24px 0 0 -24px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer;will-change:transform,opacity;-webkit-tap-highlight-color:transparent}
+.hs i{position:absolute;width:28px;height:28px;border-radius:50%;background:rgba(4,12,8,.62);border:1.5px solid #fff;backdrop-filter:blur(6px);transition:background .3s,border-color .3s,scale .3s var(--ease);animation:hsp 2.4s ease-out infinite}
+.hs b{position:relative;font:600 .8rem/1 Inter,sans-serif;color:#fff;transition:color .3s}
+.hs:hover i,.hs:focus-visible i{scale:1.18;border-color:var(--sprout)}
+.hs.on i{background:var(--sprout);border-color:var(--sprout);animation:none;box-shadow:0 0 22px rgba(124,181,66,.8)}.hs.on b{color:#06120C}
+@keyframes hsp{0%{box-shadow:0 0 0 0 rgba(124,181,66,.65)}70%,100%{box-shadow:0 0 0 16px rgba(124,181,66,0)}}
+.vt-stage>.vt-ang{left:18px;top:18px;z-index:4;display:flex;align-items:center;gap:10px;color:var(--mut);font:500 .82rem Inter,sans-serif;font-variant-numeric:tabular-nums;pointer-events:none}
+.vt-ang svg{width:42px;height:42px;rotate:-90deg}.vt-ang circle{fill:none;stroke-width:2.4}.vt-ang .t{stroke:rgba(255,255,255,.16)}.vt-ang .v{stroke:var(--sprout);stroke-linecap:round;stroke-dasharray:1}
+.vt-stage>.vt-ctl{right:16px;top:16px;z-index:4;display:flex;gap:8px}
+.vc{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(6,18,12,.66);backdrop-filter:blur(12px);color:#fff;font:600 .85rem Inter,sans-serif;cursor:pointer;transition:border-color .3s,background .3s;-webkit-tap-highlight-color:transparent}
+.vc:hover{border-color:var(--sprout);background:rgba(17,106,52,.45)}
+.vc.ic{width:44px;padding:0}.vc svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vt-stage>.vt-hint{left:50%;bottom:20px;translate:-50% 0;z-index:4;display:flex;align-items:center;gap:12px;color:var(--mut);font-size:.88rem;pointer-events:none;white-space:nowrap;animation:hint 2.6s ease-in-out infinite}
+.vt-hint svg{width:44px;height:22px;fill:none;stroke:var(--sprout);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes hint{50%{opacity:.45}}
+/* cartão do componente */
+.vt-card{display:block;padding:clamp(22px,2.4vw,30px);z-index:5}
+.vt-card[hidden]{display:none}
+.vc-in{display:grid;gap:12px}
+.vc-in header{display:flex;justify-content:space-between;align-items:center}
+.vc-in .num{font-size:clamp(2.6rem,4vw,3.4rem)}
+.vc-in h3{font-size:clamp(1.55rem,2.2vw,1.95rem);line-height:1.05;letter-spacing:-.02em}
+.vc-in p{color:#cfe0d5;font-size:.96rem;line-height:1.6}
+.vc-in .chips{display:flex;gap:8px;flex-wrap:wrap}
+.vc-in footer{display:flex;align-items:center;flex-wrap:wrap;gap:12px;color:var(--mut);font-size:.84rem;margin-top:4px}.vc-in footer span,.vc-in footer .btn{white-space:nowrap}
+.vc-in footer .btn{margin-left:auto;min-height:44px;padding:0 20px}
+.vc-in{animation:vci .5s var(--ease) both}
+@keyframes vci{from{opacity:0;translate:0 10px}}
+@media(min-width:861px){
+  .vt-card{position:absolute;left:var(--cx,0px);top:var(--cy,0px);width:var(--cw,320px);opacity:0;translate:0 10px;scale:.96;filter:blur(6px);pointer-events:none;transition:opacity .45s var(--ease),translate .45s var(--ease),scale .45s var(--ease),filter .45s var(--ease)}
+  .vt-card.open{opacity:1;translate:0 0;scale:1;filter:none;pointer-events:auto}
+}
+@media(max-width:860px){
+  .vt-card{margin-top:14px;opacity:0;translate:0 10px;transition:opacity .4s var(--ease),translate .4s var(--ease)}
+  .vt-card.open{opacity:1;translate:0 0}
+  .vt-stage{height:clamp(440px,64svh,600px);border-radius:28px}
+  .vt-stage>.vt-hint{bottom:16px}
+}
+@media(max-width:520px){.vt-ctl .vc span,.vt-ang span{display:none}.vt-stage>.vt-ctl{right:10px;top:10px}.vt-stage>.vt-ang{left:12px;top:12px}}
+.vt-rail{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+.rl2{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px 0 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:var(--glass);backdrop-filter:blur(10px);color:var(--ink);font:500 .92rem Inter,sans-serif;cursor:pointer;transition:border-color .3s,background .3s;-webkit-tap-highlight-color:transparent}
+.rl2 b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);font-size:.82rem;transition:background .3s,color .3s}
+.rl2:hover{border-color:rgba(124,181,66,.6)}
+.rl2.on{border-color:var(--sprout);background:rgba(124,181,66,.14)}.rl2.on b{background:var(--sprout);color:#06120C}
+@media(max-width:860px){.vt-rail{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:24px;padding-bottom:8px;margin-inline:-24px;padding-inline:24px;scrollbar-width:none}.vt-rail::-webkit-scrollbar{display:none}.rl2{flex:none;scroll-snap-align:start}}
+.vt-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:clamp(28px,4vw,48px)}
+
+/* ---------- card "Leve a EcoVitality para a sua área" ---------- */
+.cta2{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;gap:clamp(24px,4vw,56px);padding:clamp(32px,5vw,68px);min-height:320px;
+  background:radial-gradient(70% 130% at 100% 0%,rgba(124,181,66,.2),transparent 62%),rgba(4,14,9,.8)}
+.cta2>.cta2-m{position:absolute;right:-5%;top:50%;height:150%;width:auto;aspect-ratio:1;translate:0 -50%;opacity:.11;animation:spin 90s linear infinite;pointer-events:none;z-index:0}
+.cta2>div{position:relative;z-index:1}
+.cta2 .h2{font-size:clamp(2.4rem,5vw,4.4rem)}
+.cta2 .lead{margin-top:16px}
+.cta2-a{display:grid;gap:12px;justify-items:stretch}
+@media(max-width:860px){.cta2{grid-template-columns:1fr}.cta2>.cta2-m{height:110%;right:-30%}.cta2-a{grid-auto-flow:row}}
+
+/* ---------- final de página com a nova logo ---------- */
+.fin{background:radial-gradient(60% 55% at 50% 48%,rgba(17,106,52,.2),transparent 72%)}
+.fin-bg{opacity:.26}
+.fin-logo{width:min(540px,78vw);height:auto;overflow:visible}
+.fin-in{gap:clamp(22px,3.4vw,38px)}
+.fglow{opacity:0;filter:blur(60px)}
+.fin.go .fglow{animation:fgl 2.8s ease-out both}
+@keyframes fgl{0%{opacity:0;transform:scale(.3)}45%{opacity:.34}to{opacity:.14;transform:scale(1)}}
+.fin.go .fl.m{animation:flm .9s var(--ease) 1.05s both}
+@keyframes flm{from{opacity:0}to{opacity:1}}
+.fsweep{opacity:.6}
+.fin-s{gap:2px}
+.fin-s .fw.e{color:var(--sprout);font-style:italic}
+.fin-rule{width:min(520px,76vw);height:auto;overflow:visible}
+.fin-rule line{stroke:var(--sprout);stroke-width:3;stroke-linecap:round;opacity:.7;transform-box:fill-box;transform:scaleX(0)}
+.fin-rule .rl1{transform-origin:right}.fin-rule .rl2{transform-origin:left}
+.fin-rule .rsp{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.4)}
+.fin.go .fin-rule line{animation:frl 1s var(--ease) 3.2s both}
+.fin.go .fin-rule .rsp{animation:frs .8s var(--ease) 3.1s both}
+@keyframes frl{to{transform:scaleX(1)}}
+@keyframes frs{to{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.fin-rule line{transform:none!important}.fin-rule .rsp{opacity:1!important;transform:none!important}}
+
+/* ---------- celular e tablet ---------- */
+/* galeria horizontal: em tela estreita vira faixa de deslize com encaixe, sem prender a rolagem vertical */
+html.cp .hg{height:auto}
+html.cp .hgs{position:static;height:auto;overflow:visible;padding:48px 0}
+html.cp .hgt{transform:none!important;width:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;padding-inline:24px;scrollbar-width:none}
+html.cp .hgt::-webkit-scrollbar{display:none}
+html.cp .hgc{scroll-snap-align:center;height:min(440px,64svh)}
+html.cp .hgp{display:none}
+/* jornada da cápsula: legendas viram cartões na base da tela */
+@media(max-width:720px){
+  .jcap{left:12px;right:12px;top:auto;bottom:84px;translate:none;max-width:none;padding:20px 22px}
+  .jcap.r{left:12px;right:12px}
+  .jfin{max-width:none}
+  .jcap .num{font-size:2.2rem}.jcap h3{font-size:1.5rem}.jfin h2{font-size:1.8rem}
+  .jtl{bottom:18px;gap:14px;padding:10px 16px}
+  .jintro{padding-top:calc(6.5rem + 2vh)}
+}
+/* botões e alvos de toque confortáveis */
+@media(pointer:coarse){.btn{min-height:52px}.fq button{min-height:68px}.xx{width:48px;height:48px}}
+/* o card do processo no toque não tem contagem de 2 s: um toque abre */
+@media(hover:none){.pc5 .hint{color:#fff;border-color:rgba(124,181,66,.6)}}
+/* painel de pesquisa no celular: ocupa quase toda a largura, com rolagem interna */
+@media(max-width:560px){.xc{padding:22px}.xn{font-size:3.4rem}}
+/* hero em tela pequena: o vídeo começa mais perto do texto */
+@media(max-width:720px){.hero2{padding-top:calc(5.5rem + 24px)}.hl{font-size:clamp(2.7rem,13vw,4rem)}}
+
+/* menu escuro e firme também sobre o hero claro */
+.nv{background:rgba(5,15,10,.9)}
